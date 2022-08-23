@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ForumsApi {
-  getForumsNotifications() async {
+  getForums() async {
     var list = [];
     try {
       var response = await Dio(

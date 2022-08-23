@@ -3,12 +3,12 @@ import 'package:la_vie_app/constants.dart';
 import 'package:la_vie_app/models/forum_model.dart';
 import 'package:la_vie_app/models/product_model.dart';
 
-class NotificationCard extends StatelessWidget {
+class ForumCard extends StatelessWidget {
 
   final int index;
   final dynamic data ;
   late Forum _forum;
-  NotificationCard(this.index, this.data ,{Key? key}) : super(key: key){
+  ForumCard(this.index, this.data ,{Key? key}) : super(key: key){
     _forum = Forum(data['title'], data['description'], baseUrl + data['imageUrl']);
   }
 

@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:la_vie_app/constants.dart';
 
 class UsersApi {
-  getUserNotification() async {
-    var list = [];
+  getUserData() async {
+    var data = '';
     try {
       var response = await Dio(
         BaseOptions(
@@ -14,11 +14,11 @@ class UsersApi {
         ),
       ).get('$baseUrl/api/v1/user/me').then((value) {
         if(value.statusCode == 200){
-          list = value.data['data']['UserNotification'];
+          data = value.data['data'];
         }
       },);
-      print(list);
-      return list;
+      print(data);
+      return data;
     } catch (e) {
       if(e is DioError){
         print(e.response);
