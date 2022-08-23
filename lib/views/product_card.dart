@@ -9,14 +9,14 @@ class ProductCard extends StatelessWidget {
   late Products _products;
 
   ProductCard( this.index, this.data, {Key? key}) : super(key: key){
-    _products = Products(data['name'],  "https://lavie.orangedigitalcenteregypt.com"+data['imageUrl'], data['price']);
+    _products = Products(data['name'],  baseUrl +data['imageUrl'], data['price']);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * .40,
-      height: MediaQuery.of(context).size.height * .30,
+      width: MediaQuery.of(context).size.width * .5,
+      height: MediaQuery.of(context).size.height * .5,
       margin: EdgeInsets.all(MediaQuery.of(context).size.width * .01),
       padding: EdgeInsets.all(MediaQuery.of(context).size.width * .05),
       decoration: BoxDecoration(
@@ -37,10 +37,11 @@ class ProductCard extends StatelessWidget {
           SizedBox(
             height:MediaQuery.of(context).size.height * 0.2 ,
             width:MediaQuery.of(context).size.width * 0.25 ,
-              child: Image(image: NetworkImage(_products.image))),
+              child: Image(image: NetworkImage(_products.image),),),
           Expanded(
             child: Text(
               _products.name.toString().toUpperCase(),
+              textAlign: TextAlign.start,
               style:  TextStyle(
                   color: Colors.black,
                   fontSize: MediaQuery.of(context).size.width * 0.04,
@@ -48,8 +49,19 @@ class ProductCard extends StatelessWidget {
               ),
             ),
           ),
+          Text(
+            '${_products.price} EGP',
+            textAlign: TextAlign.start,
+            style:  TextStyle(
+              color: Colors.black,
+              fontSize: MediaQuery.of(context).size.width * 0.04,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          AddToCartButton()
         ],
       ),
     );
   }
 }
+
