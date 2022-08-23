@@ -20,16 +20,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //var data = '';
+
     return Scaffold(
-      backgroundColor: kLavieGreen,
+      backgroundColor: Colors.black45,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       body: Column(
             children: [
-              //ProfileScreen(),
+
               Center(child: Image.asset('images/profile.png')),
               Padding(
                 padding: const EdgeInsets.all(15.0),

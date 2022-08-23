@@ -71,3 +71,5 @@ class changeIcon extends StatelessWidget {
         child: const Icon(Icons.compare_arrows, color: kLavieDarkGreen,),),);
   }
 }
+
+const kNotificationStyle =TextStyle(fontWeight: FontWeight.bold);

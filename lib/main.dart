@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:la_vie_app/views/screens/plant_screen.dart';
+import 'package:la_vie_app/views/screens/quiz_screen.dart';
 import 'package:la_vie_app/views/screens/splash_screen.dart';
 
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'La Vie',
-      home: SplashScreen(),
+      home: QuizScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
