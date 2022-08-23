@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
-class ForumsApi {
-  getForums() async {
+class BlogsApi {
+  getBlogs() async {
     var list = [];
     try {
       var response = await Dio(
@@ -11,9 +11,9 @@ class ForumsApi {
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNzRmNDU3NS0wOGYyLTRjMjQtYTExZi05NDQyOGJjMzI4NmQiLCJpYXQiOjE2NjEyNzI1ODYsImV4cCI6MTY2MTQ0NTM4Nn0.OIOif2Z_z7sN_lU9LBBaVPyPeq0tTRyNj7-3Ka8Rg3s"
           },
         ),
-      ).get('https://lavie.orangedigitalcenteregypt.com/api/v1/forums').then((value) {
+      ).get( 'https://lavie.orangedigitalcenteregypt.com/api/v1/products/blogs').then((value) {
         if(value.statusCode == 200){
-          list = value.data['data'];
+          list = value.data['data']['plants'];
         }
       },);
       print(list);

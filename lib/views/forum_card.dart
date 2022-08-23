@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:la_vie_app/constants.dart';
 import 'package:la_vie_app/models/forum_model.dart';
 import 'package:la_vie_app/models/product_model.dart';
+
+import '../models/user_model.dart';
 
 class ForumCard extends StatelessWidget {
 
@@ -9,53 +13,67 @@ class ForumCard extends StatelessWidget {
   final dynamic data ;
   late Forum _forum;
   ForumCard(this.index, this.data ,{Key? key}) : super(key: key){
-    _forum = Forum(data['title'], data['description'], baseUrl + data['imageUrl']);
+    _forum = Forum(data['title'], data['description'], baseUrl + data['imageUrl'], data['ForumLikes'].length, data['ForumComments'].length, data['user']);
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * .9,
+      width: MediaQuery.of(context).size.width * .95,
       height: MediaQuery.of(context).size.height * .5,
-      margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.width * .01),
-      padding: EdgeInsets.all(MediaQuery.of(context).size.width * .05),
+      margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.width * .05),
       decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
           color: Colors.white,
-          boxShadow:const [
-            BoxShadow(
-              color: Colors.grey,
-              spreadRadius: 0.5,
-              offset: Offset(0,2.0),
-              blurRadius: 1.0,
-            ),
-          ]
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
+          Row(children: [
+            Text(_forum.userForum.firstName),
+          ],),
 
-              child: Image(image: NetworkImage(_forum.imageUrl),)),
-          Text(
-            _forum.title.toString().toUpperCase(),
-            textAlign: TextAlign.start,
-            style:  TextStyle(
-              color: Colors.black,
-              fontSize: MediaQuery.of(context).size.width * 0.04,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-             Text(
-              _forum.description,
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text(
+              _forum.title.toString(),
               textAlign: TextAlign.start,
               style:  TextStyle(
-                color: Colors.grey[800],
-                fontSize: MediaQuery.of(context).size.width * 0.04,
-                fontWeight: FontWeight.bold,
+                color: kLavieGreen,
+                fontSize: MediaQuery.of(context).size.width * 0.06,
+                fontWeight: FontWeight.w900,
               ),
             ),
+          ),
+             Padding(
+               padding: const EdgeInsets.all(10),
+               child: Text(
+                _forum.description,
+                style:  TextStyle(
+                  color: Colors.grey[800],
+                  fontSize: MediaQuery.of(context).size.width * 0.04,
+                ),
+            ),
+             ),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(image: NetworkImage(_forum.imageUrl),
+                  fit: BoxFit.cover),),),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(children: [
+              Icon(Icons.thumb_up_alt_outlined, color: Colors.grey,),
+              Text(' ${_forum.ForumLikes} Likes', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.05,),
+              Icon(Icons.comment_outlined, color: Colors.grey,),
+              Text(' ${_forum.ForumComments} Comments', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),),
+            ],),
+          )
         ],
+
       ),
     );
   }

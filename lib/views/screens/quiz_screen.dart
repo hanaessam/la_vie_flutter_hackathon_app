@@ -2,65 +2,74 @@ import 'package:flutter/material.dart';
 import 'package:la_vie_app/constants.dart';
 
 class astronomyQuiz {
-
   var questions = [
-    'Which is the closest planet to the sun?',
-    'What is the sun mainly made from?',
-    'What are comets mostly made of?',
-    'Which of these planets is the smallest?',
-    'Which of these planets is the Largest?',
-    'What is the great red spot on Jupiter?',
-    'How many moons does Mars have?',
-    'Which of these best describes the atmosphere surrounding Venus?',
-    'Where is the asteroid belt?',
-    'What is the 6th planet in the solar system?'
+    'What is a deciduous plant?',
+    'What is chocolate made from?',
+    'Which of these plants spread their seeds on water?',
+    'What is an annual plant?',
+    'Which of these is a flowering plant?',
+    'What are leaves for?',
+    'Which of these is a nonflowering plant?',
+    'How can you tell the age of most trees?',
+    'What are the male parts of a flower called?',
+    'How does a plant get water from the soil?'
   ];
 
   var choices = [
-    ['Venus', 'Earth', 'Mercury', 'Neptune'],
-    ['Liquid Lava', 'Molten iron', 'Rock', 'Gas'],
     [
-      'Dirty ice and dust',
-      'Rusty metal',
-      'Poisonous liquid',
-      'Hot, liquid rock'
+      'A plant that loses its leaves each year',
+      'A plant that keeps its leaves all year round',
+      'A plant that bears fruit',
+      'A plant that bears cones all year round'
     ],
-    ['Mercury', 'Jupiter', 'Uranus', 'Earth'],
-    ['Mercury', 'Jupiter', 'Uranus', 'Earth'],
-    ['A lake', 'A crater', 'A volcano', 'A storm'],
-    ['50', '1', '2', '13'],
-    ['Cold and snowy', 'Bright and sunny', 'Hot and poisonous', 'Cold and wet'],
+    ['Coffee beans', 'Chicory', 'Cocoa beans', 'Durum wheat'],
+    ['Roses', 'Pine Trees', 'Dandelions', 'Water Lilies'],
     [
-      'Between Earth and Mars',
-      'Between Mars and Jupiter',
-      'Between Earth and Venus',
-      'Between Jupiter and Saturn'
+      'One that lives for more than two years',
+      'One that germinates, flowers, seeds, and dies in a year',
+      'One that germinates, flowers, seeds, and dies every two years',
+      'One that loses its leaves in winter'
     ],
+    ['Oak Tree', 'Fir Tree', 'Seaweed', 'Moss'],
     [
-      'Jupiter',
-      'Saturn',
-      'Earth',
-      'Neptune',
+      'To make the plant look pretty',
+      'To protect flowers from insects and other animals',
+      'To soak up the sun’s energy and convert it into food',
+      'To protect plants from the rain'
+    ],
+    ['Dandelion', 'Eryngo', 'Fern', 'Oak Tree'],
+    [
+      'By measuring the tree’s width',
+      'By counting the number of leaves a tree has',
+      'By counting the rings on the trunk',
+      'By measuring the tree’s height'
+    ],
+    ['Carpels', 'Stigma', 'Stamens', 'Pollen'],
+    [
+      'Through its leaves',
+      'Through its roots',
+      'Through its stem',
+      'Through its flowers',
     ]
   ];
 
   var correctAnswers = [
-    'Mercury',
-    'Gas',
-    'Dirty ice and dust',
-    'Mercury',
-    'Jupiter',
-    'A storm',
-    '2',
-    'Hot and poisonous',
-    'Between Mars and Jupiter',
-    'Saturn'
+    'A plant that loses its leaves each year',
+    'Cocoa beans',
+    'Water Lilies',
+    'One that germinates, flowers, seeds, and dies in a year',
+    'Oak Tree',
+    'To soak up the sun’s energy and convert it into food',
+    'Fern',
+    'By counting the rings on the trunk',
+    'Stamens',
+    'Through its roots'
   ];
 }
 
 var finalScore = 0;
 var questionNumber = 0;
-var quiz = new astronomyQuiz();
+var quiz = astronomyQuiz();
 
 class QuizScreen extends StatefulWidget {
   @override
@@ -72,158 +81,162 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Course Exam', style: TextStyle(color: Colors.black),),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
+          appBar: AppBar(
+            title: const Text(
+              'Course Exam',
+              style: TextStyle(color: Colors.black),
+            ),
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+          ),
           body: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
-        children: [
-            Container(
-              alignment: Alignment.centerRight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      child: Center(
-                        child: Text(
-                          'Question ${questionNumber + 1} / ${quiz.questions.length}',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 40.0),
+              children: [
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          textBaseline: TextBaseline.ideographic,
+                          children: [
+                            const Text(
+                              'Question ',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 35.0),
+                            ), Text('${questionNumber + 1}', style: const TextStyle(color: kLavieGreen, fontWeight: FontWeight.bold, fontSize: 40),),
+                             Text('/${quiz.questions.length}', style: const TextStyle(color: Colors.grey, fontSize: 25),),
+                          ],
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                quiz.questions[questionNumber],
-                style: TextStyle(
-                    fontFamily: 'DaysOne', color: Colors.black, fontSize: 25.0),
-              ),
-            ),
-
-            Column(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    if (quiz.choices[questionNumber][0] ==
-                        quiz.correctAnswers[questionNumber]) {
-                      print('Correct');
-                      finalScore++;
-                    } else {
-                      print('Wrong');
-                    }
-                    updateQuestion();
-                  },
-                  child: ChoiceButton(quiz.choices[questionNumber][0]),
                 ),
-                TextButton(
-                  onPressed: () {
-                    if (quiz.choices[questionNumber][1] ==
-                        quiz.correctAnswers[questionNumber]) {
-                      print('Correct');
-                      finalScore++;
-                    } else {
-                      print('Wrong');
-                    }
-                    updateQuestion();
-                  },
-                  child: ChoiceButton(quiz.choices[questionNumber][1]),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    quiz.questions[questionNumber],
+                    style: const TextStyle(
+                        fontFamily: 'DaysOne',
+                        color: Colors.black,
+                        fontSize: 25.0),
+                  ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    if (quiz.choices[questionNumber][2] ==
-                        quiz.correctAnswers[questionNumber]) {
-                      print('Correct');
-                      finalScore++;
-                    } else {
-                      print('Wrong');
-                    }
-                    updateQuestion();
-                  },
-                  child: ChoiceButton(quiz.choices[questionNumber][2]),
-                ),
-                TextButton(
-                  onPressed: () {
-                    if (quiz.choices[questionNumber][3] ==
-                        quiz.correctAnswers[questionNumber]) {
-                      print('Correct');
-                      finalScore++;
-                    } else {
-                      print('Wrong');
-                    }
-                    updateQuestion();
-                  },
-                  child: ChoiceButton(quiz.choices[questionNumber][3]),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Column(
                   children: [
                     TextButton(
                       onPressed: () {
-                        resetQuiz();
+                        if (quiz.choices[questionNumber][0] ==
+                            quiz.correctAnswers[questionNumber]) {
+                          print('Correct');
+                          finalScore++;
+                        } else {
+                          print('Wrong');
+                        }
+                        updateQuestion();
                       },
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.0),
-                          border: Border.all(color: kLavieGreen, width: 2)
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Reset',
-                            style: TextStyle(
-                                color: kLavieGreen,
-                                fontSize: 20.0),
-                          ),
-                        ),
-                      ),
+                      child: ChoiceButton(quiz.choices[questionNumber][0]),
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        new Summary(score: finalScore)))
-                            .then((value) => setState(() {}));
+                        if (quiz.choices[questionNumber][1] ==
+                            quiz.correctAnswers[questionNumber]) {
+                          print('Correct');
+                          finalScore++;
+                        } else {
+                          print('Wrong');
+                        }
+                        updateQuestion();
                       },
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        decoration: BoxDecoration(
-                          color: kLavieGreen,
-                            borderRadius: BorderRadius.circular(12.0),
-                            border: Border.all(color: kLavieGreen, width: 2)
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Next',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0),
+                      child: ChoiceButton(quiz.choices[questionNumber][1]),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        if (quiz.choices[questionNumber][2] ==
+                            quiz.correctAnswers[questionNumber]) {
+                          print('Correct');
+                          finalScore++;
+                        } else {
+                          print('Wrong');
+                        }
+                        updateQuestion();
+                      },
+                      child: ChoiceButton(quiz.choices[questionNumber][2]),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        if (quiz.choices[questionNumber][3] ==
+                            quiz.correctAnswers[questionNumber]) {
+                          print('Correct');
+                          finalScore++;
+                        } else {
+                          print('Wrong');
+                        }
+                        updateQuestion();
+                      },
+                      child: ChoiceButton(quiz.choices[questionNumber][3]),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            resetQuiz();
+                          },
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * 0.05,
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12.0),
+                                border:
+                                    Border.all(color: kLavieGreen, width: 2)),
+                            child: const Center(
+                              child: Text(
+                                'Reset',
+                                style: TextStyle(
+                                    color: kLavieGreen, fontSize: 20.0),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            new Summary(score: finalScore)))
+                                .then((value) => setState(() {}));
+                          },
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * 0.05,
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            decoration: BoxDecoration(
+                                color: kLavieGreen,
+                                borderRadius: BorderRadius.circular(12.0),
+                                border:
+                                    Border.all(color: kLavieGreen, width: 2)),
+                            child: const Center(
+                              child: Text(
+                                'Next',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
-                ),
+                )
               ],
-            )
-        ],
-      ),
+            ),
           )),
     );
   }
@@ -234,7 +247,7 @@ class _QuizScreenState extends State<QuizScreen> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => new Summary(score: finalScore)));
+                builder: (context) => Summary(score: finalScore)));
       } else {
         questionNumber++;
       }
@@ -263,8 +276,8 @@ class Summary extends StatelessWidget {
           children: [
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
+                const Padding(
+                  padding: EdgeInsets.all(10.0),
                   child: Center(
                     child: Text(
                       'Results',
@@ -276,8 +289,8 @@ class Summary extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                     'Total correct answers :',
                     style: TextStyle(
@@ -288,9 +301,7 @@ class Summary extends StatelessWidget {
                 ),
                 Text(
                   '$score out of 10 Questions',
-                  style: TextStyle(
-                      color: Colors.amber,
-                      fontSize: 20.0),
+                  style: const TextStyle(color: Colors.amber, fontSize: 20.0),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(45.0),
@@ -306,11 +317,10 @@ class Summary extends StatelessWidget {
                       padding: const EdgeInsets.all(25.0),
                       child: Column(
                         children: [
-                          Text(
+                          const Text(
                             'Your final score is',
-                            style: TextStyle(
-                                color: kLavieGreen,
-                                fontSize: 25.0),
+                            style:
+                                TextStyle(color: kLavieGreen, fontSize: 25.0),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(40.0),
@@ -318,8 +328,8 @@ class Summary extends StatelessWidget {
                               width: 170,
                               height: 170,
                               decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
+                                boxShadow: const [
+                                    BoxShadow(
                                     color: Colors.black26,
                                     spreadRadius: 3,
                                     blurRadius: 4,
@@ -335,7 +345,7 @@ class Summary extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   '$score' '0',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontFamily: 'DaysOne',
                                       color: Colors.white,
                                       fontSize: 60.0),
@@ -357,7 +367,6 @@ class Summary extends StatelessWidget {
   }
 }
 
-
 class ChoiceButton extends StatelessWidget {
   var choice;
   ChoiceButton(this.choice);
@@ -365,18 +374,16 @@ class ChoiceButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.85,
-      height: MediaQuery.of(context).size.height * 0.08,
+      height: MediaQuery.of(context).size.height * 0.12,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: kLavieGreen, width: 2)
-      ),
-      child: Center(
+          border: Border.all(color: kLavieGreen, width: 2)),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
         child: Text(
           choice,
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 20.0),
+          style: const TextStyle(color: Colors.black, fontSize: 20.0),
         ),
       ),
     );
