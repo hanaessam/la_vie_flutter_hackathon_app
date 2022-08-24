@@ -13,7 +13,7 @@ class ForumCard extends StatelessWidget {
   final dynamic data ;
   late Forum _forum;
   ForumCard(this.index, this.data ,{Key? key}) : super(key: key){
-    _forum = Forum(data['title'], data['description'], baseUrl + data['imageUrl'], data['ForumLikes'].length, data['ForumComments'].length, data['user']);
+    _forum = Forum(data['title'], data['description'], baseUrl + data['imageUrl'], data['ForumLikes'].length, data['ForumComments'].length);
 
   }
 
@@ -30,10 +30,6 @@ class ForumCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(children: [
-            Text(_forum.userForum.firstName),
-          ],),
-
           Padding(
             padding: const EdgeInsets.all(12),
             child: Text(

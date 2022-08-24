@@ -6,9 +6,8 @@ class Forum {
  final String _imageUrl;
  final int _ForumLikes;
  final int _ForumComments;
- final UserForum _userForum;
 
-  Forum(this._title, this._description, this._imageUrl, this._ForumLikes, this._ForumComments, this._userForum);
+  Forum(this._title, this._description, this._imageUrl, this._ForumLikes, this._ForumComments);
 
   String get imageUrl => _imageUrl;
 
@@ -20,7 +19,6 @@ class Forum {
 
   int get ForumLikes => _ForumLikes;
 
-  UserForum get userForum => _userForum;
 }
 
 class UserForum {

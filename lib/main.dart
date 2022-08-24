@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:la_vie_app/views/screens/main_screen.dart';
+import 'package:la_vie_app/views/screens/splash_screen.dart';
 
 
 void main() {
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'La Vie',
-      home: MainScreen(),
+      home: SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
