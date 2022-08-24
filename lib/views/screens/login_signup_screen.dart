@@ -167,6 +167,7 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
                   child: TextFormField(
+                    obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Password',
                       border: OutlineInputBorder(),
@@ -222,6 +223,7 @@ Container buildSignUp() {
         Padding(
           padding:const EdgeInsets.symmetric(horizontal: 32),
           child: TextFormField(
+            obscureText: true,
             decoration: InputDecoration(
               labelText: 'Password',
               border: OutlineInputBorder(),
